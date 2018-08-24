@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-course-heading" jhiTranslate="gateway1App.course.home.createOrEditLabel">Create or edit a
+                Course</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!course.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           [(ngModel)]="course.id" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.course.courseTitle"
+                           for="field_courseTitle">Course Title</label>
+                    <input type="text" class="form-control" name="courseTitle" id="field_courseTitle"
+                           [(ngModel)]="course.courseTitle" required/>
+                    <div [hidden]="!(editForm.controls.courseTitle?.dirty && editForm.controls.courseTitle?.invalid)">
+                        <small class="form-text text-danger"
+                               [hidden]="!editForm.controls.courseTitle?.errors?.required"
+                               jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.course.courseDescription"
+                           for="field_courseDescription">Course Description</label>
+                    <input type="text" class="form-control" name="courseDescription" id="field_courseDescription"
+                           [(ngModel)]="course.courseDescription"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.course.coursePrice"
+                           for="field_coursePrice">Course Price</label>
+                    <input type="number" class="form-control" name="coursePrice" id="field_coursePrice"
+                           [(ngModel)]="course.coursePrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.course.courseLevel"
+                           for="field_courseLevel">Course Level</label>
+                    <select class="form-control" name="courseLevel" [(ngModel)]="course.courseLevel"
+                            id="field_courseLevel">
+                        <option value="NOVICE">{{'gateway1App.Level.NOVICE' | translate}}</option>
+                        <option value="BEGINNER">{{'gateway1App.Level.BEGINNER' | translate}}</option>
+                        <option value="INTERMEDIATE">{{'gateway1App.Level.INTERMEDIATE' | translate}}</option>
+                        <option value="ADVANCED">{{'gateway1App.Level.ADVANCED' | translate}}</option>
+                        <option value="PROFESSIONAL">{{'gateway1App.Level.PROFESSIONAL' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="gateway1App.course.lessons" for="field_lessons">Lessons</label>
+                    <select class="form-control" id="field_lessons" multiple name="lessons"
+                            [(ngModel)]="course.lessons">
+                        <option [ngValue]="getSelected(course.lessons, lessonOption)"
+                                *ngFor="let lessonOption of lessons; trackBy: trackLessonById">{{lessonOption.id}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
+                        class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

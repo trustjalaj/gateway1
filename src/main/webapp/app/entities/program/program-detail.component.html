@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="program">
+            <h2><span jhiTranslate="gateway1App.program.detail.title">Program</span> {{program.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gateway1App.program.programName">Program Name</span></dt>
+                <dd>
+                    <span>{{program.programName}}</span>
+                </dd>
+                <dt><span jhiTranslate="gateway1App.program.programDescription">Program Description</span></dt>
+                <dd>
+                    <span>{{program.programDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="gateway1App.program.programPrice">Program Price</span></dt>
+                <dd>
+                    <span>{{program.programPrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="gateway1App.program.courses">Courses</span></dt>
+                <dd>
+                    <span *ngFor="let courses of program.courses; let last = last">
+                        <a [routerLink]="['/course', courses?.id, 'view' ]">{{courses.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/program', program.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

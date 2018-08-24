@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="discipline">
+            <h2><span jhiTranslate="gateway1App.discipline.detail.title">Discipline</span> {{discipline.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gateway1App.discipline.disciplineName">Discipline Name</span></dt>
+                <dd>
+                    <span>{{discipline.disciplineName}}</span>
+                </dd>
+                <dt><span jhiTranslate="gateway1App.discipline.disciplineDescription">Discipline Description</span></dt>
+                <dd>
+                    <span>{{discipline.disciplineDescription}}</span>
+                </dd>
+                <dt><span jhiTranslate="gateway1App.discipline.disciplinePrice">Discipline Price</span></dt>
+                <dd>
+                    <span>{{discipline.disciplinePrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="gateway1App.discipline.programs">Programs</span></dt>
+                <dd>
+                    <span *ngFor="let programs of discipline.programs; let last = last">
+                        <a [routerLink]="['/program', programs?.id, 'view' ]">{{programs.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/discipline', discipline.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

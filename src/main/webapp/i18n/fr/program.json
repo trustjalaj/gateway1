@@ -1,0 +1,26 @@
+{
+    "gateway1App": {
+        "program": {
+            "home": {
+                "title": "Programs",
+                "createLabel": "Créer un nouveau Program",
+                "createOrEditLabel": "Créer ou éditer un Program"
+            },
+            "created": "Un nouveau Program a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Program avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Program avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Program {{ id }} ?"
+            },
+            "detail": {
+                "title": "Program"
+            },
+            "programName": "Program Name",
+            "programDescription": "Program Description",
+            "programPrice": "Program Price",
+            "resources": "Resources",
+            "courses": "Courses",
+            "disciplines": "Disciplines"
+        }
+    }
+}

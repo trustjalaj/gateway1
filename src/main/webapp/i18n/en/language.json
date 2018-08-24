@@ -1,0 +1,11 @@
+{
+    "gateway1App": {
+        "Language": {
+            "null": "",
+            "ENGLISH": "ENGLISH",
+            "SPANISH": "SPANISH",
+            "HUNGARIAN": "HUNGARIAN",
+            "GERMAN": "GERMAN"
+        }
+    }
+}

@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-resource-heading" jhiTranslate="gateway1App.resource.home.createOrEditLabel">Create or edit a
+                Resource</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!resource.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           [(ngModel)]="resource.id" readonly/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.resourceName"
+                           for="field_resourceName">Resource Name</label>
+                    <input type="text" class="form-control" name="resourceName" id="field_resourceName"
+                           [(ngModel)]="resource.resourceName"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.resourceDescription"
+                           for="field_resourceDescription">Resource Description</label>
+                    <input type="text" class="form-control" name="resourceDescription" id="field_resourceDescription"
+                           [(ngModel)]="resource.resourceDescription"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.resourceURL"
+                           for="field_resourceURL">Resource URL</label>
+                    <input type="text" class="form-control" name="resourceURL" id="field_resourceURL"
+                           [(ngModel)]="resource.resourceURL"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.resourcePreviewImage"
+                           for="field_resourcePreviewImage">Resource Preview Image</label>
+                    <input type="text" class="form-control" name="resourcePreviewImage" id="field_resourcePreviewImage"
+                           [(ngModel)]="resource.resourcePreviewImage"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.resourceType"
+                           for="field_resourceType">Resource Type</label>
+                    <select class="form-control" name="resourceType" [(ngModel)]="resource.resourceType"
+                            id="field_resourceType">
+                        <option value="VIDEO">{{'gateway1App.ResourceType.VIDEO' | translate}}</option>
+                        <option value="IMAGE">{{'gateway1App.ResourceType.IMAGE' | translate}}</option>
+                        <option value="TUTORIAL">{{'gateway1App.ResourceType.TUTORIAL' | translate}}</option>
+                        <option value="PAGE">{{'gateway1App.ResourceType.PAGE' | translate}}</option>
+                        <option value="PARTIAL">{{'gateway1App.ResourceType.PARTIAL' | translate}}</option>
+                        <option value="TOOL">{{'gateway1App.ResourceType.TOOL' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.weight" for="field_weight">Weight</label>
+                    <input type="number" class="form-control" name="weight" id="field_weight"
+                           [(ngModel)]="resource.weight"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.discipline"
+                           for="field_discipline">Discipline</label>
+                    <select class="form-control" id="field_discipline" name="discipline"
+                            [(ngModel)]="resource.disciplineId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="disciplineOption.id"
+                                *ngFor="let disciplineOption of disciplines; trackBy: trackDisciplineById">
+                            {{disciplineOption.id}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.program" for="field_program">Program</label>
+                    <select class="form-control" id="field_program" name="program" [(ngModel)]="resource.programId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="programOption.id"
+                                *ngFor="let programOption of programs; trackBy: trackProgramById">{{programOption.id}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.course" for="field_course">Course</label>
+                    <select class="form-control" id="field_course" name="course" [(ngModel)]="resource.courseId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="courseOption.id"
+                                *ngFor="let courseOption of courses; trackBy: trackCourseById">{{courseOption.id}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gateway1App.resource.lesson" for="field_lesson">Lesson</label>
+                    <select class="form-control" id="field_lesson" name="lesson" [(ngModel)]="resource.lessonId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="lessonOption.id"
+                                *ngFor="let lessonOption of lessons; trackBy: trackLessonById">{{lessonOption.id}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving"
+                        class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
